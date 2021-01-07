@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Registro.Models.Subjet>
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/StyleManager.css" />
+    <title>List Offert Subjet</title>
+</head>
+<body>
+
+    <header>
+        <div class="container-fluid">
+            <h1>List Offert </h1>
+        </div>
+    </header>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.start_time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.end_time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vacancies)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Professor.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Day.day_name)
+            </th>
+            <th>
+                <button class="btn-toolbar" type="button" onclick="location.href = '@Url.Action("OffertSubjet","Student",new { order = "byName"})'">Order by name</button>
+            </th>
+            <th>
+                <button class="btn-toolbar" type="button" onclick="location.href = '@Url.Action("OffertSubjet","Student",new { order = "byDay"})'">Order by day</button>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.start_time.TimeOfDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.end_time.TimeOfDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vacancies)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Professor.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day.day_name)
+                </td>
+
+                <td>
+                    <button class="btn-primary" type="button" onclick="location.href = '@Url.Action("Description","Student",new { id = item.id})'">Description</button>
+                </td>
+                <td>
+                    <button class="btn-primary" type="button" onclick="location.href = '@Url.Action("Anotarce","Student",new { id = item.id})'">To subscribe</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <br />
+    <div class="container">
+        @ViewBag.Message
+    </div>
+
+    <br />
+
+    <button class="btn-primary col-lg-2" type="button" onclick="location.href = '@Url.Action("Index")'">Back to Student</button>
+
+</body>
+</html>

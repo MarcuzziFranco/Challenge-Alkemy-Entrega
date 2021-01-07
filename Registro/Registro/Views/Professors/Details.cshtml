@@ -1,0 +1,76 @@
+﻿@model Registro.Models.Professor
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<title>Professor</title>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/StyleManager.css" />
+    <title>Professor</title>
+</head>
+<body>
+
+    <header>
+        <div class="container-fluid">
+            <h1>Data Detail </h1>
+        </div>
+    </header>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.last_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.last_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dni)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dni)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.activity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.activity)
+            </dd>
+
+
+            <dt>
+                <button class="btn-primary" type="button" onclick="location.href = '@Url.Action("Index")'">Back to List</button>
+            </dt>
+
+        </dl>
+        <br />
+        <br />
+
+    </div>
+    <p>
+        <!-- @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |-->
+      
+    </p>
+</body>
+
+</html>

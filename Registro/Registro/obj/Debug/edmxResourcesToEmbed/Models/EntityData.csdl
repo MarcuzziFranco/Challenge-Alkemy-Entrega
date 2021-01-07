@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegistryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Profile" FromRole="Profile" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Dni" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code_login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="type" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Profile" Relationship="Self.FK_User_Profile" FromRole="User" ToRole="Profile" />
+    <NavigationProperty Name="User1" Relationship="RegistryModel.FK_User_User" FromRole="User" ToRole="User1" />
+    <NavigationProperty Name="User2" Relationship="RegistryModel.FK_User_User" FromRole="User1" ToRole="User" />
+    <NavigationProperty Name="Students" Relationship="RegistryModel.FK_Student_User" FromRole="User" ToRole="Student" />
+  </EntityType>
+  <Association Name="FK_User_Profile">
+    <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RegistryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Profiles" EntityType="Self.Profile" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_User_Profile" Association="Self.FK_User_Profile">
+      <End Role="Profile" EntitySet="Profiles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Professors" EntityType="RegistryModel.Professor" />
+    <EntitySet Name="Subjets" EntityType="RegistryModel.Subjet" />
+    <AssociationSet Name="FK_Subjet_Professor" Association="RegistryModel.FK_Subjet_Professor">
+      <End Role="Professor" EntitySet="Professors" />
+      <End Role="Subjet" EntitySet="Subjets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_User" Association="RegistryModel.FK_User_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="User1" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Students" EntityType="RegistryModel.Student" />
+    <AssociationSet Name="FK_Student_User" Association="RegistryModel.FK_Student_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <EntitySet Name="Student_subjet" EntityType="RegistryModel.Student_subjet" />
+    <AssociationSet Name="FK_Student" Association="RegistryModel.FK_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Student_subjet" EntitySet="Student_subjet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjet" Association="RegistryModel.FK_Subjet">
+      <End Role="Subjet" EntitySet="Subjets" />
+      <End Role="Student_subjet" EntitySet="Student_subjet" />
+    </AssociationSet>
+    <EntitySet Name="Days" EntityType="RegistryModel.Day" />
+    <AssociationSet Name="FK_Subjet_Day" Association="RegistryModel.FK_Subjet_Day">
+      <End Role="Day" EntitySet="Days" />
+      <End Role="Subjet" EntitySet="Subjets" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Professor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dni" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="activity" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Subjets" Relationship="RegistryModel.FK_Subjet_Professor" FromRole="Professor" ToRole="Subjet" />
+  </EntityType>
+  <EntityType Name="Subjet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_profesor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Professor" Relationship="RegistryModel.FK_Subjet_Professor" FromRole="Subjet" ToRole="Professor" />
+    <Property Name="vacancies" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Student_subjet" Relationship="RegistryModel.FK_Subjet" FromRole="Subjet" ToRole="Student_subjet" />
+    <Property Name="id_day" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Day" Relationship="RegistryModel.FK_Subjet_Day" FromRole="Subjet" ToRole="Day" />
+  </EntityType>
+  <Association Name="FK_Subjet_Professor">
+    <End Type="RegistryModel.Professor" Role="Professor" Multiplicity="1" />
+    <End Type="RegistryModel.Subjet" Role="Subjet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Subjet">
+        <PropertyRef Name="id_profesor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_User">
+    <End Type="RegistryModel.User" Role="User" Multiplicity="1" />
+    <End Type="RegistryModel.User" Role="User1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="RegistryModel.FK_Student_User" FromRole="Student" ToRole="User" />
+    <NavigationProperty Name="Student_subjet" Relationship="RegistryModel.FK_Student" FromRole="Student" ToRole="Student_subjet" />
+  </EntityType>
+  <Association Name="FK_Student_User">
+    <End Type="RegistryModel.User" Role="User" Multiplicity="1" />
+    <End Type="RegistryModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Student_subjet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_student" Type="Int32" Nullable="false" />
+    <Property Name="id_subjet" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Student" Relationship="RegistryModel.FK_Student" FromRole="Student_subjet" ToRole="Student" />
+    <NavigationProperty Name="Subjet" Relationship="RegistryModel.FK_Subjet" FromRole="Student_subjet" ToRole="Subjet" />
+  </EntityType>
+  <Association Name="FK_Student">
+    <End Type="RegistryModel.Student" Role="Student" Multiplicity="1" />
+    <End Type="RegistryModel.Student_subjet" Role="Student_subjet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Student_subjet">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjet">
+    <End Type="RegistryModel.Subjet" Role="Subjet" Multiplicity="1" />
+    <End Type="RegistryModel.Student_subjet" Role="Student_subjet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjet">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Student_subjet">
+        <PropertyRef Name="id_subjet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Day">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="day_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Subjets" Relationship="RegistryModel.FK_Subjet_Day" FromRole="Day" ToRole="Subjet" />
+  </EntityType>
+  <Association Name="FK_Subjet_Day">
+    <End Type="RegistryModel.Day" Role="Day" Multiplicity="1" />
+    <End Type="RegistryModel.Subjet" Role="Subjet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Day">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Subjet">
+        <PropertyRef Name="id_day" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

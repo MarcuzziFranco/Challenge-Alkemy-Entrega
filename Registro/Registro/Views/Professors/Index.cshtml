@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Registro.Models.Professor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<title>Professor</title>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/StyleManager.css" />
+    <title>Professor</title>
+</head>
+<body>
+
+    <header>
+        <div class="container-fluid">
+            <h1>Data Professors </h1>
+        </div>
+    </header>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.last_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.activity)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.activity)
+                </td>
+                <td>
+                    <button class="btn-primary" type="button" onclick="location.href = '@Url.Action("Edit",new { id = item.id})'">Edit</button>
+                    <button class="btn-primary" type="button" onclick="location.href = '@Url.Action("Details",new { id = item.id})'">Detail</button>
+                    <button class="btn-primary" type="button" onclick="location.href = '@Url.Action("Delete",new { id = item.id})'">Delete</button>
+                  
+                </td>
+            </tr>
+        }
+        <tr>
+        </tr>
+
+    </table>
+        
+    <table>
+        <tr>
+            <td class=" col-lg-6">
+               
+                <button class="btn-primary" type="button" onclick="location.href = '@Url.Action("Create")'">Add new professor</button>
+            </td>
+            <td class="col-lg-6">
+                <button class="btn-primary" type="button" onclick="location.href = '@Url.Action("Index","Manager")'">Back to manager page</button>
+               
+            </td>       
+        </tr>
+    </table>
+</body>
+</html>

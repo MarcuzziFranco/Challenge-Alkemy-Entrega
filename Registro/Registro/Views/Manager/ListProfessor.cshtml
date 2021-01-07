@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Registro.Models.Professor>
+
+@{
+    ViewBag.Title = "ListProfessor";
+    Layout = null;
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/StyleManager.css" />
+    <title>List Profesor Editing</title>
+</head>
+
+<body>
+    <header>
+        <div class=" container">
+            <h1>Edit Menu</h1>
+        </div>
+    </header>
+    <br />
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.last_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dni)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.activity)
+                </th>
+                <th>
+                    <label>Edit item</label>
+                </th>
+            </tr>
+     
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.last_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dni)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.activity)
+                    </td>
+
+                    <td>                               
+                        @Html.ActionLink("Buscar", "ListProfessor", "Manager", item.id, new { @class= "btn-primary" })   
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class=" container">
+            <div class=" form-group">
+                <label>Name</label>
+                <input type="text" value="tralala" />
+            </div>
+            <div class=" form-group">
+                <label>Last Name</label>
+                <input type="text" />
+            </div>
+            <div class=" form-group">
+                <label>DNI</label>
+                <input type="text"/>
+            </div>
+            <div class=" form-group">
+                <label>Is Active</label>
+                <input type="checkbox"/>
+            </div>
+            <div>
+                <input type="submit" value="Update" class="btn-primary" />
+            </div>
+        </div>
+    </div>
+</body>
+

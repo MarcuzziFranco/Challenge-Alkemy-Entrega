@@ -1,0 +1,51 @@
+﻿@model Registro.Models.Subjet
+
+@{
+    ViewBag.Title = "Description";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/StyleManager.css" />
+    <title>Professor</title>
+
+    <title>Description</title>
+</head>
+<body>
+
+    <header>
+        <div class="container-fluid">
+            <h1>Description </h1>
+        </div>
+    </header>
+    <br />
+    <div class=" container">
+        <div class="form-group">
+
+            <div>
+                <label>Name</label>
+                @Html.DisplayFor(m => m.name)
+            </div>
+        </div>
+
+        <br />
+        <div> <label>Description</label></div>
+        <div>
+            @Html.DisplayFor(m => m.description)
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <button class="btn-primary" type="button" onclick="location.href = '@Url.Action("OffertSubjet")'">Back to List</button>
+
+</body>
+</html>
+

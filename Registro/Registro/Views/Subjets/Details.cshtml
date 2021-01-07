@@ -1,0 +1,89 @@
+﻿@model Registro.Models.Subjet
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/StyleManager.css" />
+    <title>Details</title>
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <h1>Detail Subjet </h1>
+        </div>
+    </header>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.start_time)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.start_time)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.end_time)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.end_time)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.vacancies)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.vacancies)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Professor.name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Professor.name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Day.day_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Day.day_name) 
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        
+        <button class="btn-primary" type="button" onclick="location.href = '@Url.Action("Index")'">Back to List</button>
+    </p>
+</body>
+</html>

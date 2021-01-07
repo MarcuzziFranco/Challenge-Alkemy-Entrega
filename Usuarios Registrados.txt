@@ -1,0 +1,19 @@
+administradores
+Franco Marcuzzi
+dni:3780
+pass:1269
+
+admin test
+dni:1111
+pass:2222
+
+Alumnos
+
+Ana Mendez
+dni:3655
+pass:1234
+
+Rodrigo Rodriguez
+dni:1234
+pass:4321
+

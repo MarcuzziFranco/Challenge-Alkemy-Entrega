@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "EditProfessor";
+    Layout = null;
+    
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/StyleLogin.css" />
+    <title>Login</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Login</h1>
+        </div>
+    </header>
+
+    <div class="container">
+
+       
+        
+           <div>
+               <input type="submit" value="Serch" class="btn btn-default"
+                      onclick="location.href='@Url.Action("SerchProfessor", "Manager")'" />
+           </div>
+
+        
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+
+
+</html>

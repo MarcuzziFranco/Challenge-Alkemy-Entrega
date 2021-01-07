@@ -1,0 +1,61 @@
+﻿@model Registro.Models.DataLogin
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/StyleLogin.css" />
+    <title>Login</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Login</h1>
+        </div>
+    </header>
+
+    <div class="container">
+             <div>
+                    @using (Html.BeginForm("Autorization", "Login", FormMethod.Post)) 
+                    {
+                       <br/>
+                           <div class="form-group">
+                               <label>DNI</label> 
+                               @Html.TextBoxFor(m => m.dm_Dni)
+                               @Html.ValidationMessageFor(m => m.dm_Dni)
+                           </div> 
+                           <div class="form-group">
+                               <label>PASS</label>
+                               @Html.TextBoxFor(m => m.dm_Code_login)
+                               @Html.ValidationMessageFor(m => m.dm_Code_login)
+                           </div> 
+                           <div class="form-group">
+                               <label>MANAGER</label>
+                               @Html.CheckBox("dm_isManager")
+                               <button class="btn-primary">Login</button>
+                           </div>
+
+                           <div class="msn-error">
+                                @ViewBag.error
+                           </div>
+                                                  
+                    }
+            </div>
+    </div>
+    
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+
+
+</html>
+
+
+

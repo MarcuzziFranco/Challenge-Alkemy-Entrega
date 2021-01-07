@@ -1,0 +1,53 @@
+﻿
+@model Registro.Models.DataUser
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/StyleManager.css" />
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+
+    <title>Student</title>
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid">
+            <h1>
+                Student
+               @ViewBag.name
+               @ViewBag.lastName
+            </h1>                   
+        </div>
+    </header>
+    <div class="navegation navbar-brand container">
+        <ul class="nav navbar-nav">
+            <li>
+                <div>@Html.ActionLink("View Subjets", "OffertSubjet", "Student", null, new { @class = "dropdown-option" })</div>
+            </li>
+            <li>
+                <div>@Html.ActionLink("My Subjets", "ListarMySubjet", "Student", null, new { @class = "dropdown-option" })</div>
+            </li>
+            <li>
+                <div class="btn-logout">@Html.ActionLink("Logout", "FinishSession", "Student", null, new { @class = "dropdown-option " })</div>
+            </li>
+        </ul>
+    </div>
+
+    <br />
+    <br /> 
+</body>
+
+</html>
+
+

@@ -1,0 +1,68 @@
+﻿@model Registro.Models.Professor
+
+@{
+    Layout = null;
+    ViewBag.Title = "FormProfessor";
+}
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" href="~/Content/StyleFormProfessor.css" />
+
+<h2>FormProfessor</h2>
+
+@using (Html.BeginForm("AddProfessor", "Manager", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Professor</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.last_name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dni, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dni, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dni)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.activity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.activity)
+                    @Html.ValidationMessageFor(model => model.activity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn-primary" /> 
+
+            </div>
+        </div>
+    </div>
+
+    <div class="msn-operation">
+        @ViewBag.error
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to manager page", "Index")
+</div>
